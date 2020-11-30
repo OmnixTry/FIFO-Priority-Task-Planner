@@ -38,7 +38,7 @@ namespace TaskPlanner
         public void AddTask(PlannerTask task)
         {
             Queues[task.Priority].Enqueue(task);
-            if (task.Priority > _currentBiggestPriority)
+            if (task.Priority < _currentBiggestPriority)
                 _currentBiggestPriority = task.Priority;
         }
 
@@ -49,8 +49,8 @@ namespace TaskPlanner
                 return null;
 
             PlannerTask task = Queues[_currentBiggestPriority].Dequeue();
-            while (Queues[_currentBiggestPriority].Count() == 0 && _currentBiggestPriority <= MaxPriority)
-                _currentBiggestPriority--;
+            while (_currentBiggestPriority <= MaxPriority && Queues[_currentBiggestPriority].Count() == 0)
+                _currentBiggestPriority++;
             OnElementRemoved.Invoke(task);
 
             return task;
