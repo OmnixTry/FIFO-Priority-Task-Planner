@@ -12,7 +12,9 @@ namespace Demo
         static void Main(string[] args)
         {
             FIFOPriorityContainer priorityContainer = new FIFOPriorityContainer(5);
-            priorityContainer.OnElementRemoved += (PlannerTask task) => { Console.WriteLine($"Taken element with Priority {task.Priority}."); };
+            GanttDiagramBuilder diagramBuilder = new GanttDiagramBuilder();
+            priorityContainer.OnElementRemoved += diagramBuilder.ProcessNextTaskExecution;
+            //priorityContainer.OnElementRemoved += (PlannerTask task) => { Console.WriteLine($"Taken element with Priority {task.Priority}."); };
             priorityContainer.AddTask(new PlannerTask("T1", 4, 5));
             priorityContainer.AddTask(new PlannerTask("T2", 4, 4));
             priorityContainer.AddTask(new PlannerTask("T3", 4, 3));
@@ -26,8 +28,12 @@ namespace Demo
             priorityContainer.DisplayEnqued();
 
             Planner planner = new Planner(priorityContainer);
+
             planner.StartExecution();
-            
+
+            Console.WriteLine("\n\n\n" +
+                "Gantt Diagram:\n");
+            Console.WriteLine(diagramBuilder.ToString());
             
 
         }
