@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaskPlanner
 {
-    class Program
+    public class Planner
     {
-        static void Main(string[] args)
-        {
-        }
     }
 }
