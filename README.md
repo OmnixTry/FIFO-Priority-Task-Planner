@@ -34,3 +34,15 @@ Builds Gant diagram of the execution of the tasks that were put in a particular 
 ![CodeExample](img/code-demo.png)
 ### Console Output
 ![ConsoleOut](img/console-out.jpg)
+### Graphs
+![IdleTimeFromIntensity.jpg](img/Idle.jpg)
+
+The graph shows the dependency of percentage of idle time of the executor depending on the intensity(the amount of time between the new requests arrival). From the graph we can deduce that the less frequently the new requests come to out tasks performer, the more Idle time it has. That is caused by the fact that the performer manages to fullfill bigger part of the tasks when new ones come less frequently.
+
+![TimeFromPriority](img/timeFromPriority.jpg)
+
+The following graph shows how average waiting time of a task changes from the priority of the task. As we can see there's a strong upward trend on the graph. This tendency is caused by the fact that Tasks that have a big priority are always the last ones to start execution so they spend more time in the queue. This is effective if we know what tasks need to be executed immediately and what tasks can wait, so we set the most important priority to the tasks that can't wait, and they'll be executed soon.
+
+![TimeFromIntensity](img/timeFromIntensity.jpg)
+
+This graph shows the dependency between the average time of a task in a queue and the intensity of new tasks comming. Taking into ackount the previous graphs we can say that if the new task come very often the Task Performer is unable to do them all fast because he doesn't have enough time: new requests come faster than they can be fullfiled.
