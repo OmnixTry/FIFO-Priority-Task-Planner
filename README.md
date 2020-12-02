@@ -30,3 +30,7 @@ Builds Gant diagram of the execution of the tasks that were put in a particular 
 - `Planner` execution started.
 - Gantt Diagram Displayed
 ## Code Demo
+### Example of code
+![CodeExample](img/code-demo.png)
+### Console Output
+![ConsoleOut](img/console-out.jpg)
